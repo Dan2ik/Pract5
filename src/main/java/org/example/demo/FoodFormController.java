@@ -42,9 +42,9 @@ public class FoodFormController  implements Initializable {
                 FOOD_COOKIE
         ));
         cmbFoodType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            this.cookiePane.setVisible(newValue.equals(FOOD_COOKIE));
             this.fruitPane.setVisible(newValue.equals(FOOD_FRUIT));
             this.chocolatePane.setVisible(newValue.equals(FOOD_CHOCOLATE));
-            this.cookiePane.setVisible(newValue.equals(FOOD_COOKIE));
         });
 
     }

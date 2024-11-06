@@ -35,7 +35,7 @@
             </Label>
             <TextField fx:id="txtTitle" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
             <TextField fx:id="txtKKal" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-            <VBox fx:id="fruitPane" prefHeight="24.0" prefWidth="193.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <VBox fx:id="cookiePane" prefHeight="24.0" prefWidth="193.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
                   <CheckBox fx:id="chkWithSugar" mnemonicParsing="false" text="с сахаром">
                      <font>
@@ -80,7 +80,7 @@
                   <ChoiceBox fx:id="cmbChocolateType" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="169.0" />
                </children>
             </HBox>
-            <VBox fx:id="cookiePane" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
+            <VBox fx:id="fruitPane" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
                <children>
                   <CheckBox fx:id="chkIsFresh" contentDisplay="CENTER" mnemonicParsing="false" text="Свежее">
                      <font>
