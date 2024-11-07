@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.example.demo.Models.Chocolates;
+import org.example.demo.Models.Coockies;
+import org.example.demo.Models.Fruts;
+import org.example.demo.Models.food;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,6 +59,54 @@ public class FoodFormController  implements Initializable {
     public Boolean getModalResult() {
         return modalResult;
     }
+    public void setFood(food food) {
+        // делаем так что если объект редактируется, то нельзя переключать тип
+        this.cmbFoodType.setDisable(food != null);
+        if (food != null) {
+            // ну а тут стандартное заполнение полей в соответствии с переданной едой
+            this.txtFoodKkal.setText(String.valueOf(food.getKkal()));
+            this.txtFoodTitle.setText(food.getTitle());
+
+            if (food instanceof Fruts) { // если фрукт
+                this.cmbFoodType.setValue(FOOD_FRUIT);
+                this.chkIsFresh.setSelected(((Fruts) food).isFresh);
+            } else if (food instanceof Coockies) { // если булочка
+                this.cmbFoodType.setValue(FOOD_COOKIE);
+                this.chkWithSugar.setSelected(((Coockies) food).withSugar);
+                this.chkWithPoppy.setSelected(((Coockies) food).withPoppy);
+                this.chkWithSesame.setSelected(((Coockies) food).withSesame);
+            } else if (food instanceof Chocolates) { // если шоколад
+                this.cmbFoodType.setValue(FOOD_CHOCOLATE);
+                this.cmbChocolateType.setValue(((Chocolates) food).type);
+            }
+        }
+    }
+
+    public food getFood() {
+        food result = null;
+        int kkal = Integer.parseInt(this.txtFoodKkal.getText());
+        String title = this.txtFoodTitle.getText();
+
+        switch ((String)this.cmbFoodType.getValue()) {
+            case FOOD_CHOCOLATE:
+                result = new Chocolates(kkal, title, (Chocolates.Type)this.cmbChocolateType.getValue());
+                break;
+            case FOOD_COOKIE:
+                result = new Coockies(
+                        kkal,
+                        title,
+                        this.chkWithSugar.isSelected(),
+                        this.chkWithPoppy.isSelected(),
+                        this.chkWithSesame.isSelected()
+                );
+                break;
+            case FOOD_FRUIT:
+                result = new Fruts(kkal, title, this.chkIsFresh.isSelected());
+                break;
+        }
+        return result;
+    }
+
 
 
     @Override

@@ -33,8 +33,8 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTitle" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <TextField fx:id="txtKKal" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="txtFoodTitle" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="txtFoodKkal" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
             <VBox fx:id="cookiePane" prefHeight="24.0" prefWidth="193.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
                   <CheckBox fx:id="chkWithSugar" mnemonicParsing="false" text="с сахаром">
@@ -60,12 +60,12 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </VBox>
-            <Button mnemonicParsing="false" text="Сохранить" GridPane.rowIndex="6">
+            <Button mnemonicParsing="false" onAction="#onSaveClick" text="Сохранить" GridPane.rowIndex="6">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="отмена" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onCancelClick" text="отмена" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="20.0" />
                </font>

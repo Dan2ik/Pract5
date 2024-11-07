@@ -15,9 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.demo.Models.*;
+import org.example.demo.FoodFormController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -76,6 +78,7 @@ public class HelloController implements Initializable {
     }
     @FXML
     public void onAddClick(ActionEvent actionEvent) {
+
         try {
             // эти три строчки создают форму из fxml файлика
             // в принципе можно было бы обойтись
@@ -96,32 +99,66 @@ public class HelloController implements Initializable {
 
             // открываем окно и ждем пока его закроют
             stage.showAndWait();
-        }
+
+            // вытаскиваем контроллер который привязан к форме
+            FoodFormController controller = loader.getController();
+            // проверяем что наали кнопку save
+            if (controller.getModalResult()) {
+                // собираем еду с формы
+                food newFood = controller.getFood();
+                // добавляем в список
+                this.foodList.add(newFood);
+
+            }
+            }
         catch (IOException e){
             e.printStackTrace();
         }
+
+    }
+    public void onEditClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FoodForm.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(this.MainTable.getScene().getWindow());
+
+        stage.showAndWait();
+        FoodFormController controller = loader.getController();
+        controller.setFood((food) this.MainTable.getSelectionModel().getSelectedItem());
+
+        stage.showAndWait();
+
+        // если нажали кнопку сохранить
+        if (controller.getModalResult()) {
+            // узнаем индекс выбранной в таблице строки
+            int index = this.MainTable.getSelectionModel().getSelectedIndex();
+            // подменяем строку в таблице данными на форме
+            this.MainTable.getItems().set(index, controller.getFood());
+        }
+
+
     }
 
-    public static class FoodFormController  implements Initializable {
-        // создаем
-        public ChoiceBox cmbFoodType;
-        public TextField txtFoodTitle;
-        public TextField txtFoodKkal;
 
-        public VBox fruitPane;
-        public CheckBox chkIsFresh;
+    public void onDeleteClick(ActionEvent actionEvent) {
 
-        public HBox chocolatePane;
-        public ChoiceBox cmbChocolateType;
+        // берем выбранную на форме еду
+        food food = (food) this.MainTable.getSelectionModel().getSelectedItem();
 
-        public VBox cookiePane;
-        public CheckBox chkWithSugar;
-        public CheckBox chkWithPoppy;
-        public CheckBox chkWithSesame;
+        // выдаем подтверждающее сообщение
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Подтверждение");
+        alert.setHeaderText(String.format("Точно удалить %s?", food.getTitle()));
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-
+        // если пользователь нажал OK
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            // удаляем строку из таблицы
+            this.MainTable.getItems().remove(food);
         }
     }
 }

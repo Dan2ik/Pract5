@@ -3,7 +3,7 @@ package org.example.demo.Models;
 public class Chocolates extends food {
     public enum Type {white, black, milk;} // какие типы шоколада бывают
 
-    private Type type;// а это собственно тип шоколада
+    public Type type;// а это собственно тип шоколада
 
     public Chocolates(int kkal, String title, Type type) {
         super(kkal, title);

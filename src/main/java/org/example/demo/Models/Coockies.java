@@ -3,9 +3,9 @@ package org.example.demo.Models;
 import java.util.ArrayList;
 
 public class Coockies extends food{
-    private Boolean withSugar;// с сахаром ли?
-    private Boolean withPoppy;// или маком?
-    private Boolean withSesame;// а может с кунжутом?
+    public Boolean withSugar;// с сахаром ли?
+    public Boolean withPoppy;// или маком?
+    public Boolean withSesame;// а может с кунжутом?
 
     public Coockies(int kkal, String title, Boolean withSugar, Boolean withPoppy, Boolean withSesame) {
         super(kkal, title);

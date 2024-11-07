@@ -1,7 +1,7 @@
 package org.example.demo.Models;
 
 public class Fruts extends food{
-    private Boolean isFresh;// свежий ли фрукт
+    public Boolean isFresh;// свежий ли фрукт
 
     public Fruts(int kkal, String title, Boolean isFresh) {
         super(kkal, title);
