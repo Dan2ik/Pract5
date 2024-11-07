@@ -10,12 +10,12 @@
   </padding>
    <MenuBar>
      <menus>
-       <Menu mnemonicParsing="false" onAction="#onAddClick" text="Файл">
+       <Menu mnemonicParsing="false" text="Файл">
          <items>
            <MenuItem mnemonicParsing="false" text="Close" />
          </items>
        </Menu>
-       <Menu mnemonicParsing="false" onAction="#onEditClick" text="Данные">
+       <Menu mnemonicParsing="false" text="Данные">
          <items>
            <MenuItem mnemonicParsing="false" onAction="#onDeleteClick" text="Удалить" />
                <MenuItem mnemonicParsing="false" onAction="#onEditClick" text="Изменить" />
@@ -24,5 +24,5 @@
        </Menu>
      </menus>
    </MenuBar>
-  <TableView fx:id="MainTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+  <TableView fx:id="MainTable" VBox.vgrow="ALWAYS" />
 </VBox>
